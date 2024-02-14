@@ -1,15 +1,14 @@
-
-
-
+import Layout from "@/pages/Layout/index";
 
 
 export default function Home() {
   return (
     <>
-
-      <main className="">
-
-      </main>
+      <Layout>
+        <main className="">
+          main
+        </main>
+      </Layout>
     </>
   );
 }

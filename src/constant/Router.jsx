@@ -1,5 +1,5 @@
 export const ROUTER = {
     Home: "/",
     Detail:"/detail",
-    Wish: "/wish"
+    WishList: "/wish"
 }
