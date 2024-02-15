@@ -3,9 +3,9 @@ import axios from "axios"
 const omdbApi = axios.create({
   baseURL: "https://omdbapi.com",
   params: {
-    apikey: "59551034",
+    apikey: "fc1fef96",
   },
-})
+});
 
 export const getMovies = async () => {
   try {
@@ -14,7 +14,7 @@ export const getMovies = async () => {
       throw new Error("Error fetching data")
     }
     else {
-      response.data
+      return response.data
     }
   }
   catch (error) {
