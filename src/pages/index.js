@@ -1,10 +1,33 @@
 import Layout from "@/pages/Layout/index";
 import { getMovies, getSearchMovies } from "../config/index"
+import { useGlobalContext } from "@/context/GlobalContext";
+import {toast} from "react-toastify"
 
 
 
 export default function Home({ movies }) {
-  console.log(movies)
+
+  const {wishlist,setWishList,movieInWishList} = useGlobalContext();
+
+  const addWish = (imdbID) =>{
+    const selectMovie = movies.find((movie) => movie.imdbID === imdbID)
+    const existed = wishlist.find((movie) => movie.imdbID === imdbID)
+
+    const wishedMovies =  existed ? [...wishlist] : [...wishlist,selectMovie];
+    setWishList(wishedMovies)
+    localStorage.setItem("wishMovies", JSON.stringify(wishedMovies))
+    if(!existed){
+      toast.success("Movie added successfully",{
+        autoClose:1000,
+      })
+    }
+    else{
+      toast.info("Movie already added",{
+        autoClose:1000
+      })
+    }
+  }
+
   return (
     <>
       <Layout>
