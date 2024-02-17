@@ -25,4 +25,4 @@ const GlobalContextProvider = ({ children }) => {
     )
 }
 const useGlobalContext = () => useContext(GlobalContext)
-export { useGlobalContext, GlobalContextProvider }
+export { GlobalContextProvider, useGlobalContext };

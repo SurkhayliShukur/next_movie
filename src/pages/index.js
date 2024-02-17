@@ -1,7 +1,9 @@
-import Layout from "@/pages/Layout/index";
+import Layout from "../pages/Layout/index";
 import { getMovies, getSearchMovies } from "../config/index"
-import { useGlobalContext } from "@/context/GlobalContext";
+import React from "react";
+import  {useGlobalContext } from "../context/GlobalContext";
 import {toast} from "react-toastify"
+import {FaHeart,FaRegHeart} from "react-icons/fa6"
 
 
 
@@ -36,7 +38,7 @@ export default function Home({ movies }) {
           {
             movies && movies.length > 0 ? (
               movies.map((item) => {
-
+              const inWishList = movieInWishList(item.imdbID)
                 return (
                   <div className="mx-auto" key={item.imdbID}>
                       <div className="group relative overflow-hidden cursor-pointer">
@@ -52,6 +54,24 @@ export default function Home({ movies }) {
                             {item.Year}
                           </span>
                         </h2>
+
+                        <p className="text-md opacity-0 group-hover:opacity-100 group-hover:mb-16 duration-500 text-gega-grey"></p>
+                        <div className="absolute flex space-x-8 text-gega-grey opacity-0  -bottom-4 group-hover:bottom-1 group-hover:opacity-100 duration-500">
+                          <button
+                            className="hover:text-gega-red hover:opacity-60 duration:500"
+                            onClick={() => addWish(item.imdbID)}
+                          >
+                            {
+                              inWishList ? (
+                                <FaHeart size={50} className="text-gega-red" />
+                              )
+                                : (
+                                  <FaRegHeart size={50} className="text-gega-red" />
+                                )
+                            }
+
+                          </button>
+                        </div>
                           </div>
                       </div>
                   </div>
