@@ -1,9 +1,9 @@
 import Layout from "../pages/Layout/index";
 import { getMovies, getSearchMovies } from "../config/index"
 import React from "react";
-import  {useGlobalContext } from "../context/GlobalContext";
+import  {useGlobalContext} from "../context/GlobalContext";
 import {toast} from "react-toastify"
-import {FaHeart,FaRegHeart} from "react-icons/fa6"
+import {FaHeart,FaRegHeart} from "react-icons/fa"
 
 
 
