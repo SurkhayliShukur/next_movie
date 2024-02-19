@@ -9,13 +9,13 @@ import {FaHeart,FaRegHeart} from "react-icons/fa"
 
 export default function Home({ movies }) {
 
-  const {wishlist,setWishList,movieInWishList} = useContext(GlobalContext)
+  const {wishList,setWishList,movieInWishList} = useContext(GlobalContext)
 
   const addWish = (imdbID) =>{
     const selectMovie = movies.find((movie) => movie.imdbID === imdbID)
-    const existed = wishlist.find((movie) => movie.imdbID === imdbID)
+    const existed = wishList.find((movie) => movie.imdbID === imdbID)
 
-    const wishedMovies =  existed ? [...wishlist] : [...wishlist,selectMovie];
+    const wishedMovies =  existed ? [...wishList] : [...wishList,selectMovie];
     setWishList(wishedMovies)
     localStorage.setItem("wishMovies", JSON.stringify(wishedMovies))
     if(!existed){
