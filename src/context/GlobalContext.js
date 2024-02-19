@@ -1,39 +1,34 @@
-import { createContext, useContext, useState ,useEffect} from "react";
+import { createContext, useState } from "react";
 
-const GlobalContext = createContext
+export const GlobalContext = createContext();
 
-const GlobalContextProvider = ({ children }) => {
-    const [wishlist, setWishList] = useState([])
-    const [search, setSerach] = useState("")
-    const wishLength = wishlist.length
+const Provider = ({children}) => {
+    const [wishList, setWishList] = useState([])
+    const [search,setSearch] = useState("")
+    const wishLength = wishList.length;
 
-    const movieInWishList = (imdbID) => {
-        return wishlist.find((movie) => movie.imdbID === imdbID)
-    }
-    const filteredMovies = wishlist.filter((movie) => {
+    const filterMovie = wishList.filter((movie) => {
         return movie.Title.toLowerCase().includes(search.toLowerCase())
     })
+    const movieInWishList = (imdbID) => {
+        return wishList.find((movie) => movie.imdbID === imdbID)
+    }
 
-
-    useEffect(() => {
-        const storedWishList = localStorage.getItem("wishList");
-        if (storedWishList) {
-          setWishList(JSON.parse(storedWishList));
-        }
-      }, []);
 
     const value = {
-        wishlist,
+        wishList,
         setWishList,
-        movieInWishList,
-        search
+        setSearch,
+        search,
+        wishLength,
+        filterMovie,
+        movieInWishList
     }
-    const Component = GlobalContext.Provider;
-    return (
-        <Component value={value}>
+    return(
+        <GlobalContext.Provider value={value}>
             {children}
-        </Component>
+        </GlobalContext.Provider>
     )
 }
-const useGlobalContext = () => useContext(GlobalContext)
-export { GlobalContextProvider, useGlobalContext };
+
+export default Provider

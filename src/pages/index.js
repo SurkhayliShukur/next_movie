@@ -1,7 +1,7 @@
 import Layout from "../pages/Layout/index";
 import { getMovies, getSearchMovies } from "../config/index"
-import React from "react";
-import  {useGlobalContext} from "../context/GlobalContext";
+import React ,{useContext}from "react";
+import {GlobalContext} from "../context/GlobalContext"
 import {toast} from "react-toastify"
 import {FaHeart,FaRegHeart} from "react-icons/fa"
 
@@ -9,7 +9,7 @@ import {FaHeart,FaRegHeart} from "react-icons/fa"
 
 export default function Home({ movies }) {
 
-  const {wishlist,setWishList,movieInWishList} = useGlobalContext();
+  const {wishlist,setWishList,movieInWishList} = useContext(GlobalContext)
 
   const addWish = (imdbID) =>{
     const selectMovie = movies.find((movie) => movie.imdbID === imdbID)

@@ -1,9 +1,9 @@
-export default function wishList(){
+import React from 'react'
 
-
-    return(
-        <div>
-            Wish
-        </div>
-    )
+const wishList = () => {
+  return (
+    <div>wish</div>
+  )
 }
+
+export default wishList
