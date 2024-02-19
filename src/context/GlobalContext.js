@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const GlobalContext = createContext();
 
@@ -13,6 +13,12 @@ const Provider = ({children}) => {
     const movieInWishList = (imdbID) => {
         return wishList.find((movie) => movie.imdbID === imdbID)
     }
+    useEffect(() => {
+        const storedWishList = localStorage.getItem("wishMovies");
+        if (storedWishList) {
+          setWishList(JSON.parse(storedWishList));
+        }
+      }, []);
 
 
     const value = {
