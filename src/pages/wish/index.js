@@ -63,7 +63,7 @@ const wishList = () => {
               ) 
               :
                 (
-                  <p>Not Found</p>
+                  <p className='text-gega-red text-4xl font-bold text-center'>Not Found</p>
                 )
             }
           </div>

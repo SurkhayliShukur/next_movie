@@ -34,7 +34,23 @@ export const getSearchMovies = async (search) => {
       }
     }
     catch(error){
+      console.log(error)
+      throw error
+    }
+    }
+}
 
+export const getMovieId = async(movieId) => {
+  try{
+    const response = await omdbApi.get(`/?s=${movieId}`)
+    if(response.status !== 200){
+      throw new Error("Error fetch search data")
     }
+    else{
+      return response.data
     }
+  }
+  catch(error){
+
+  }
 }
