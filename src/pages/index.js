@@ -3,11 +3,14 @@ import { getMovies, getSearchMovies } from "../config/index"
 import React ,{useContext}from "react";
 import {GlobalContext} from "../context/GlobalContext"
 import {toast} from "react-toastify"
-import {FaHeart,FaRegHeart} from "react-icons/fa"
+import { useRouter } from "next/router";
+import {FaHeart,FaRegHeart,FaCircleChevronRight} from "react-icons/fa6"
+import { ROUTER } from "@/constant/Router";
 
 
 
 export default function Home({ movies }) {
+  const {push} = useRouter()
 
   const {wishList,setWishList,movieInWishList} = useContext(GlobalContext)
 
@@ -70,6 +73,14 @@ export default function Home({ movies }) {
                                 )
                             }
 
+                          </button>
+                          <button
+                            className="text-cyan-300   hover:opacity-60 duration-500"
+                            onClick={() =>
+                              push(`${ROUTER.Detail}/${item.imdbID}`)
+                            }
+                          >
+                            <FaCircleChevronRight size={50} />
                           </button>
                         </div>
                           </div>

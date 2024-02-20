@@ -1,6 +1,7 @@
-import { getMovieId } from "@/config"
+import { getMovieId } from "../../../config/index"
 import { useRouter } from "next/router"
-import { ROUTER } from "@/constant/Router"
+import { ROUTER } from "../../../constant/Router"
+import {FaCircleChevronLeft} from "react-icons/fa6"
 
 
 export default function Detail({ movieDetail }) {
@@ -22,7 +23,7 @@ export default function Detail({ movieDetail }) {
                             />
                             <div className="py-3 w-full lg:w-1/2  text-gray-200 flex flex-col items-center text-lg lg:text-xl">
                                 <h3 className="text-red-100  dark:text-cyan-300 text-3xl mb-3 lg:mb-5">
-                                    {movieDetail.Title.slice(0, 20)}
+                                    {movieDetail.Title}
                                 </h3>
                                 <p>Year: {movieDetail.Year}</p>
                                 <p className="my-3 lg:my-6">Rated: {movieDetail.Rated}</p>
@@ -35,7 +36,7 @@ export default function Detail({ movieDetail }) {
                                 <p className="my-3 lg:my-6">Genre: {movieDetail.Genre}</p>
                                 <p>Director: {movieDetail.Director}</p>
                                 <p className="my-3 lg:my-6">
-                                    Plot: {movieDetail.Plot.slice(0, 20)}...
+                                    Plot: {movieDetail.Plot}...
                                 </p>
                                 <button
                                     onClick={() => push(ROUTER.Home)}
