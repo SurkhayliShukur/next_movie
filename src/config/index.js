@@ -26,31 +26,32 @@ export const getSearchMovies = async (search) => {
   if (search !== "") {
     try {
       const response = await omdbApi.get(`/?s=${search}`)
-      if(response.status !== 200 ){
+      if (response.status !== 200) {
         throw new Error("Error fetch search data")
       }
-      else{
+      else {
         return response.data.Search
       }
     }
-    catch(error){
+    catch (error) {
       console.log(error)
       throw error
     }
-    }
+  }
 }
 
-export const getMovieId = async(movieId) => {
-  try{
+export const getMovieId = async (movieId) => {
+  try {
     const response = await omdbApi.get(`/?s=${movieId}`)
-    if(response.status !== 200){
+    if (response.status !== 200) {
       throw new Error("Error fetch search data")
     }
-    else{
+    else {
       return response.data
     }
   }
-  catch(error){
-
+  catch (error) {
+    console.log(error)
+    throw error
   }
 }

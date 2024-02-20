@@ -1,3 +1,4 @@
+import React from "react"
 import { getMovieId } from "../../../config/index"
 import { useRouter } from "next/router"
 import { ROUTER } from "../../../constant/Router"
@@ -65,24 +66,27 @@ export default function Detail({ movieDetail }) {
 
         </>
     )
+
 }
 
 export async function getServerSideProps({ query }) {
-    const movieId = query.movieId
-    try {
-        const response = await getMovieId(movieId)
-        return {
-            props: {
-                movieDetail: response
-            }
-        }
-    }
-    catch (error) {
-        throw new Error("Error", error);
-        return {
-            props: {
-                movieDetail: null
-            }
-        }
-    }
+  const movieId = query.id;
+  try {
+    const response = await getMovieId(movieId);
+    console.log("response", response);
+    return {
+      props: {
+        movieDetail: response,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching movies:", error.message);
+    return {
+      props: {
+        movieDetail: null,
+        hasErrror: true,
+      },
+    };
+  }
 }
+
