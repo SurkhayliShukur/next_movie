@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 export const GlobalContext = createContext();
 
@@ -12,6 +13,15 @@ const Provider = ({children}) => {
     })
     const movieInWishList = (imdbID) => {
         return wishList.find((movie) => movie.imdbID === imdbID)
+    }
+
+    const deleteFromWishList = (imdbID) => {
+        const deleteMovie = wishList.filter((movie) => movie.imdbID !== imdbID)
+        setWishList(deleteMovie)
+        localStorage.setItem("wishMovies", JSON.stringify(deleteMovie))
+        toast.success("Deleted Successfully", {
+            autoClose:1000,
+        })
     }
     useEffect(() => {
         const storedWishList = localStorage.getItem("wishMovies");
@@ -28,7 +38,8 @@ const Provider = ({children}) => {
         search,
         wishLength,
         filterMovie,
-        movieInWishList
+        movieInWishList,
+        deleteFromWishList
     }
     return(
         <GlobalContext.Provider value={value}>

@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa"
 
 
 const wishList = () => {
-  const { filterMovie, setSearch, search, } = useContext(GlobalContext)
+  const { filterMovie, setSearch, search, deleteFromWishList } = useContext(GlobalContext)
   return (
     <>
       <Layout>
@@ -33,35 +33,35 @@ const wishList = () => {
               filterMovie && filterMovie.length > 0 ? (
                 filterMovie.map((movie) => (
                   <div className="mx-auto" key={movie.imdbID}>
-                  <div className="group relative overflow-hidden cursor-pointer">
-                    <img
-                      src={movie.Poster}
-                      className="group-hover:scale-110 group-hover:opacity-50 duration-500 rounded-sm h-96 w-96 object-cover"
-                      alt={movie.Title}
-                    />
-                    <div className="absolute px-6 bottom-8">
-                      <h2 className="text-gega-grey group-hover:text-gega-melon group-hover:mb-6 font-poppins font-bold duration-500 text-xl">
-                        {movie.Title.slice(0, 13)}
-                        <span className="group-hover:text-green-500 ml-2">
-                          {movie.Year}
-                        </span>
-                      </h2>
+                    <div className="group relative overflow-hidden cursor-pointer">
+                      <img
+                        src={movie.Poster}
+                        className="group-hover:scale-110 group-hover:opacity-50 duration-500 rounded-sm h-96 w-96 object-cover"
+                        alt={movie.Title}
+                      />
+                      <div className="absolute px-6 bottom-8">
+                        <h2 className="text-gega-grey group-hover:text-gega-melon group-hover:mb-6 font-poppins font-bold duration-500 text-xl">
+                          {movie.Title.slice(0, 13)}
+                          <span className="group-hover:text-green-500 ml-2">
+                            {movie.Year}
+                          </span>
+                        </h2>
 
-                      <p className="text-md opacity-0 group-hover:opacity-100 group-hover:mb-1 duration-500 text-gega-grey">
-                        <button
-                          className="px-5 py-1 text-xl bg-gega-red rounded-md hover:opacity-75 duration-500 "
-                          // onClick={() => deleteFromWishList(movie.imdbID)}
-                        >
-                          Remove
-                        </button>
-                      </p>
-                      <div className="absolute flex space-x-8 text-gega-grey opacity-0 -bottom-3 group-hover:bottom-2 group-hover:opacity-100 duration-500"></div>
+                        <p className="text-md opacity-0 group-hover:opacity-100 group-hover:mb-1 duration-500 text-gega-grey">
+                          <button
+                            className="px-5 py-1 text-xl bg-gega-red rounded-md hover:opacity-75 duration-500 "
+                          onClick={() => deleteFromWishList(movie.imdbID)}
+                          >
+                            Remove
+                          </button>
+                        </p>
+                        <div className="absolute flex space-x-8 text-gega-grey opacity-0 -bottom-3 group-hover:bottom-2 group-hover:opacity-100 duration-500"></div>
+                      </div>
                     </div>
                   </div>
-                </div>
                 ))
-              ) 
-              :
+              )
+                :
                 (
                   <p className='text-gega-red text-4xl font-bold text-center'>Not Found</p>
                 )
